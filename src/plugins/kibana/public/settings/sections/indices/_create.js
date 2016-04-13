@@ -14,6 +14,19 @@ uiRoutes
   template: createTemplate
 });
 
+
+uiModules.get('kibana')
+.config(['$translateProvider', function($translateProvider){
+  var translations = {
+    "H1-HEADER": '(A-T)Configure an index pattern(A-T)'
+  };
+
+  $translateProvider
+    .translations('en', translations)
+    .preferredLanguage('en');
+}]);
+
+
 uiModules.get('apps/settings')
 .controller('settingsIndicesCreate', function ($scope, kbnUrl, Private, Notifier, indexPatterns, es, config, Promise) {
   const notify = new Notifier();

@@ -16,9 +16,9 @@ uiRoutes
 
 
 uiModules.get('kibana')
-.config(['$translateProvider', function($translateProvider){
+.config(['$translateProvider', function ($translateProvider) {
   var translations = {
-    "H1-HEADER": '(A-T)Configure an index pattern(A-T)'
+    'H1-HEADER': '(A-T)Configure an index pattern(A-T)'
   };
 
   $translateProvider

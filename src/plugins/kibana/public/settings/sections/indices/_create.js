@@ -14,21 +14,16 @@ uiRoutes
   template: createTemplate
 });
 
-
 uiModules.get('kibana')
-.config(['$translateProvider', function ($translateProvider) {
-  var translations = {
-    'H1-HEADER': '(A-T)Configure an index pattern(A-T)'
-  };
-
-  $translateProvider
-    .translations('en', translations)
-    .preferredLanguage('en');
-}]);
-
+.config(function ($translateProvider, $translatePartialLoaderProvider) {
+  $translateProvider.useLoader('$translatePartialLoader', {
+    urlTemplate: '{part}/i18n/{lang}.json'
+  });
+  $translateProvider.preferredLanguage('en');
+});
 
 uiModules.get('apps/settings')
-.controller('settingsIndicesCreate', function ($scope, kbnUrl, Private, Notifier, indexPatterns, es, config, Promise) {
+.controller('settingsIndicesCreate', function ($scope, kbnUrl, Private, Notifier, indexPatterns, es, config, Promise, $translate, $translatePartialLoader) {
   const notify = new Notifier();
   const refreshKibanaIndex = Private(PluginsKibanaSettingsSectionsIndicesRefreshKibanaIndexProvider);
   const intervals = indexPatterns.intervals;
@@ -49,6 +44,10 @@ uiModules.get('apps/settings')
 
   index.nameInterval = _.find(index.nameIntervalOptions, { name: 'daily' });
   index.timeField = null;
+
+  // tell angular-translate what part to load
+  $translatePartialLoader.addPart('plugins/kibana/public/settings/sections/indices');
+  $translate.refresh();
 
   $scope.canExpandIndices = function () {
     // to maximize performance in the digest cycle, move from the least

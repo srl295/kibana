@@ -2,10 +2,8 @@
   <kbn-settings-indices>
     <div ng-controller="settingsIndicesCreate" class="kbn-settings-indices-create">
       <div class="page-header">
-        <h1>Configure an index pattern</h1>
-        In order to use Kibana you must configure at least one index pattern. Index patterns are
-        used to identify the Elasticsearch index to run search and analytics against. They are also
-        used to configure fields.
+        <h1 translate>H1-CONFIGURE-INDEX-PATTERN</h1>
+          <p translate>MUST-CONFIGURE-INDEX-PATTERN</p>
       </div>
       <div>
         <form name="form" role="form" class="well" ng-submit="createIndexPattern()">
@@ -14,7 +12,7 @@
               <input
                 ng-model="index.isTimeBased"
                 type="checkbox">
-              Index contains time-based events
+              <span translate>CONTAINS-TIME-BASED-EVENTS-CHECKBOX</span>
             </label>
             <br>
             <label ng-if="index.isTimeBased">

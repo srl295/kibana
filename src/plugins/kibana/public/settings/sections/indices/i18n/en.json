@@ -1,4 +1,5 @@
 {
-    'H1-HEADER': '(A-T)Configure an index pattern(A-T)',
-    'H1-PARAGRAPH': '(en)In order to use Kibana you must configure at least one index pattern. Index patterns are used to identify the Elasticsearch index to run search and analytics against. They are also used to configure fields.(en)'
+    'H1-CONFIGURE-INDEX-PATTERN': 'Configure an index pattern',
+    'MUST-CONFIGURE-INDEX-PATTERN': 'In order to use Kibana you must configure at least one index pattern. Index patterns are used to identify the Elasticsearch index to run search and analytics against. They are also used to configure fields.',
+    'CONTAINS-TIME-BASED-EVENTS-CHECKBOX': 'Index contains time-based events'
 }

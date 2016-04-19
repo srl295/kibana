@@ -93,7 +93,7 @@
             </div>
 
             <div class="alert alert-{{index.existing.class}}" ng-if="index.existing">
-              <span translate='EXISTING-MATCH-PERCENT' translage-value-indexExistingMatchPercent='{{index.existing.matchPercent}}'></span>
+              <span translate='EXISTING-MATCH-PERCENT' translate-value-indexExistingMatchPercent='{{index.existing.matchPercent}}'></span>
               <ul>
                 <li ng-repeat="match in index.existing.matches | orderBy:'toString()'| limitTo: index.sampleCount">{{match}}</li>
               </ul>

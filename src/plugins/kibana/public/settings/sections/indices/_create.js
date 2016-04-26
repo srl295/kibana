@@ -46,7 +46,7 @@ uiModules.get('apps/settings')
   index.timeField = null;
 
   // tell angular-translate what part to load
-  $translatePartialLoader.addPart('kibana/public/settings/sections/indices');
+  $translatePartialLoader.addPart('../plugins/kibana/settings/sections/indices');
   $translate.refresh();
 
   $scope.canExpandIndices = function () {

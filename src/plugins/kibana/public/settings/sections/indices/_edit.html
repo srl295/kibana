@@ -12,16 +12,16 @@
         <p>
           <span translate='edit.DESCRIPTION' translate-value-indexPatternId='{{::indexPattern.id}}'></span>
           <a target="_window" href="http://www.elastic.co/guide/en/elasticsearch/reference/current/mapping.html" translate>
-            edit.MAPPING-API
+            edit.MAPPING_API
             <i aria-hidden="true" class="fa-link fa"></i>
           </a>
         </p>
         <div ng-if="indexPattern.timeFieldName && indexPattern.intervalName" class="alert alert-info">
-          <span translate>edit.TIME-BASED-INDEX-ALERT</span> <span ng-bind="::indexPattern.getInterval().display"></span>
+          <span translate>edit.TIME_BASED_INDEX_ALERT</span> <span ng-bind="::indexPattern.getInterval().display"></span>
         </div>
-        <div ng-if="!indexPattern.canExpandIndices()" class="alert alert-info" translate>edit.DIRECT-QUERY-ALERT</div>
+        <div ng-if="!indexPattern.canExpandIndices()" class="alert alert-info" translate>edit.DIRECT_QUERY_ALERT</div>
         <div ng-if="conflictFields.length" class="alert alert-warning">
-          <strong translate>edit.MAPPING-CONFLICT</strong> {{conflictFields.length > 1 ? conflictFields.length : 'A'}} field{{conflictFields.length > 1 ? 's' : ''}} {{conflictFields.length > 1 ? 'are' : 'is'}} defined as several types (string, integer, etc) across the indices that match this pattern. You may still be able to use these conflict fields in parts of Kibana, but they will be unavailable for functions that require Kibana to know their type. Correcting this issue will require reindexing your data.
+          <strong translate>edit.MAPPING_CONFLICT</strong> {{conflictFields.length > 1 ? conflictFields.length : 'A'}} field{{conflictFields.length > 1 ? 's' : ''}} {{conflictFields.length > 1 ? 'are' : 'is'}} defined as several types (string, integer, etc) across the indices that match this pattern. You may still be able to use these conflict fields in parts of Kibana, but they will be unavailable for functions that require Kibana to know their type. Correcting this issue will require reindexing your data.
         </div>
       </div>
 

@@ -37,6 +37,10 @@ uiModules.get('apps/settings')
     $scope.fieldTypes = fieldTypes($scope.indexPattern);
   });
 
+  // point angular-translate to base subdirectory where this modules i18n files are located
+  $translatePartialLoader.addPart('../plugins/kibana/settings/sections/indices');
+  $translate.refresh();
+
   $scope.changeTab = function (obj) {
     $state.tab = obj.index;
     $state.save();

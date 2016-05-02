@@ -69,7 +69,7 @@
             <div ng-if="index.notExpandable" class="alert alert-info">
               <span translate>create.NOT_EXPANDABLE_PART1</span>
 
-              <span translate="create.NOT_EXPANABLE_PART2" translate-value-indexName="{{index.name}}"></span>
+              <span translate="create.NOT_EXPANABLE_PART2" translate-values="{ indexName: '{{index.name}}' }"></span>
             </div>
 
             <p class="help-block" translate>create.WILDCARD_DEFAULT_EXPANDED_TO_CURRENT_TIME_RANGE_HELP</p>
@@ -93,7 +93,7 @@
             </div>
 
             <div class="alert alert-{{index.existing.class}}" ng-if="index.existing">
-              <span translate='create.EXISTING_MATCH_PERCENT' translate-value-indexExistingMatchPercent='{{index.existing.matchPercent}}'></span>
+              <span translate='create.EXISTING_MATCH_PERCENT' translate-values="{ indexExistingMatchPercent: '{{index.existing.matchPercent}}' }"></span>
               <ul>
                 <li ng-repeat="match in index.existing.matches | orderBy:'toString()'| limitTo: index.sampleCount">{{match}}</li>
               </ul>

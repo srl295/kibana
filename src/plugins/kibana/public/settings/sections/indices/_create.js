@@ -14,14 +14,6 @@ uiRoutes
   template: createTemplate
 });
 
-uiModules.get('kibana')
-.config(function ($translateProvider, $translatePartialLoaderProvider) {
-  $translateProvider.useLoader('$translatePartialLoader', {
-    urlTemplate: '{part}/i18n/{lang}.json'
-  });
-  $translateProvider.preferredLanguage('en');
-});
-
 uiModules.get('apps/settings')
 .controller('settingsIndicesCreate', function ($scope, kbnUrl, Private, Notifier, indexPatterns, es, config, Promise, $translate, $translatePartialLoader) {
   const notify = new Notifier();
@@ -45,7 +37,7 @@ uiModules.get('apps/settings')
   index.nameInterval = _.find(index.nameIntervalOptions, { name: 'daily' });
   index.timeField = null;
 
-  // tell angular-translate what part to load
+  // point angular-translate to base subdirectory where this modules i18n files are located
   $translatePartialLoader.addPart('../plugins/kibana/settings/sections/indices');
   $translate.refresh();
 

@@ -42,15 +42,15 @@ The following links can help:
 (see [Scoping Translations](#Scoping Translations), below), 
 copy the `en.json` English source to _languagecode_`.json`:
 
-    cp i18n/main/en.json i18n/main/mt.json
-    cp i18n/charts/en.json i18n/main/mt.json
+    cp src/plugins/kibana/public/settings/sections/indices/i18n/en.json src/plugins/kibana/public/settings/sections/indices/i18n/mt.json
     …
     
 - Translate each `mt.json` file in a JSON editor 
 
-- Run the translation unit tests with __TODO TODO__
+- Start up Kibana and verify the translation works as expected.
 
-- Start up Kibana and verify the translation works as expected
+- Run the translation tests 
+    * (TODO)
 
 - Commit the `mt.json` files and push them to your own
 fork of `kibana`
@@ -61,12 +61,84 @@ fork of `kibana`
 Scoping Translations
 ---
 Kibana translates according to app scope, so there are
-different `.json` files according to scope ……
+different `.json` files in a different `i18n` subdirectory
+ according to scope. Within each `.json` file,
+for example 
+`src/plugins/kibana/public/settings/sections/indices/i18n/en.json`
+there are multiple sections, such as `create` and `edit`.
 
-Translating Angular views
+
+Enabling Translation of an Angular view
 ---
-- TODO
 
-Translating Chart components
+* Determine which views should share an application scope.
+In this example, `create` and `edit` will share scope.
+
+* Create the actual translation file.
+
+ * Create the appropriate `i18n` directory and the new file `en.json` inside it.
+In the above example, it would be:
+`src/plugins/kibana/public/settings/sections/indices/i18n/en.json`
+
+ * Structure the file so that it has a top-level key for each view
+(i.e. `create` and `edit` in our example).
+
+```
+    {
+      "create": {
+      },
+      "edit": {          
+      }
+    }
+```
+
+* In the controller file, such as 
+`src/plugins/kibana/public/settings/sections/indices/_create.js`
+add `$translate, $translatePartialLoader` to the injected parameters of
+the call to `.controller()`.   Add to that function these calls:
+
+```!js
+  // point angular-translate to base subdirectory where this modules i18n files are located
+  $translatePartialLoader.addPart('../plugins/kibana/settings/sections/indices');
+  $translate.refresh();
+```
+
+* In the matching view (HTML) file, such as
+`src/plugins/kibana/public/settings/sections/indices/_create.html`
+Replace English text with translation keys, and copy the English text
+into the `en.json` file appropriately.
+Note that loose text was put into a `<p></p>` tag for translation purposes.
+Also note the prefix `create.` matching the view and controller source files.
+
+#### Before ####
+`_create.html`
+```
+    <h1>Configure an index pattern</h1>
+    In order to use Kibana you must configure at least one index pattern…
+```
+
+#### After ####
+`_create.html`
+```
+    <h1 translate>create.H1_CONFIGURE_INDEX_PATTERN</h1>
+    <p translate>create.MUST_CONFIGURE_INDEX_PATTERN</p>
+```
+
+`en.json`
+```
+    {
+        "create": {
+            "H1_CONFIGURE_INDEX_PATTERN": "Configure an index pattern",
+            "MUST_CONFIGURE_INDEX_PATTERN": "In order to use Kibana you must…"
+        },
+        "edit": {
+            …
+        }
+    }
+```
+
+* Refresh the Kibana page and verify the UI looks the same.
+
+Translating Chart (non-Angular) components
 ---
 - TODO

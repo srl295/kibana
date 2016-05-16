@@ -21,7 +21,8 @@ uiRoutes
 });
 
 uiModules.get('apps/settings')
-.controller('settingsIndicesEdit', function ($scope, $location, $route, config, courier, Notifier, Private, AppState, docTitle,  $translate, $translatePartialLoader) {
+.controller('settingsIndicesEdit', function ($scope, $location, $route, config, courier, Notifier, Private, AppState, docTitle,
+                                             $translate, $translatePartialLoader) {
 
   const notify = new Notifier();
   const $state = $scope.state = new AppState();

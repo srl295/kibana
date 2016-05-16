@@ -15,7 +15,8 @@ uiRoutes
 });
 
 uiModules.get('apps/settings')
-.controller('settingsIndicesCreate', function ($scope, kbnUrl, Private, Notifier, indexPatterns, es, config, Promise, $translate, $translatePartialLoader) {
+.controller('settingsIndicesCreate', function ($scope, kbnUrl, Private, Notifier, indexPatterns, es, config, Promise,
+                                               $translate, $translatePartialLoader) {
   const notify = new Notifier();
   const refreshKibanaIndex = Private(PluginsKibanaSettingsSectionsIndicesRefreshKibanaIndexProvider);
   const intervals = indexPatterns.intervals;

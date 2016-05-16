@@ -11,7 +11,9 @@ define(function (require) {
   $translateProvider.useLoader('$translatePartialLoader', {
     urlTemplate: '{part}/i18n/{lang}.json'
   });
-  $translateProvider.preferredLanguage('en');
+  $translateProvider
+    .uniformLanguageTag('bcp47')
+    .determinePreferredLanguage();
 });
 
 

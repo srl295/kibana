@@ -13,11 +13,6 @@ define(function (require) {
   });
   $translateProvider
     .uniformLanguageTag('bcp47')
-    .registerAvailableLanguageKeys(['en', 'de'], {
-        'en*': 'en',
-        'de*': 'de',
-        '*': 'en'
-    })
     .determinePreferredLanguage()
     .fallbackLanguage('en');
 });

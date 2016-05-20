@@ -6,15 +6,17 @@ import ngMock from 'ng_mock';
 let debounce;
 let $timeout;
 let $timeoutSpy;
+let translate;
 
 function init() {
   ngMock.module('kibana');
 
-  ngMock.inject(function ($injector, _$timeout_) {
+  ngMock.inject(function ($injector, _$timeout_, $translate) {
     $timeout = _$timeout_;
     $timeoutSpy = sinon.spy($timeout);
 
     debounce = $injector.get('debounce');
+    translate = $translate;
   });
 }
 
@@ -73,6 +75,14 @@ describe('debounce service', function () {
   });
 
   describe('cancel', function () {
+    it('should have no pending tasks after translation finishes.', function (done) {
+      translate('create.MORE').then(function (translation) {
+        expect(translation).to.be.ok;
+        expect(translation).to.equal('more');
+        $timeout.verifyNoPendingTasks(); // throws if pending timeouts
+        done();
+      });
+    });
     it('should cancel the $timeout', function () {
       let cancelSpy = sinon.spy($timeout, 'cancel');
       let bouncer = debounce(spy, 100);
